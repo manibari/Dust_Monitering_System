@@ -1,0 +1,8 @@
+rtsp_url: "rtsp://user:user@172.16.1.250:554/Interface/Cameras/Media?Camera=S2-IPC08"
+
+settings:
+  refresh_interval: 60  # 頁面刷新間隔（秒）
+
+thresholds:
+  yellow_line: 45       # 設備警戒值
+  red_line: 60
