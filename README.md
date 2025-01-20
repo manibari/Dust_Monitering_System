@@ -39,8 +39,9 @@
 
 ## 安裝步驟
 
-1. 安裝 Python 環境（版本 3.8 或以上）。
+1. 安裝 Python 環境（版本 3.11 或以上）。
 2. 使用以下命令安裝必要套件：
+
    ```bash
    pip install -r requirements.txt
    ```
@@ -49,25 +50,36 @@
 
 ## 使用方法
 
-### 啟動數據模擬器
-
-在終端執行以下命令以模擬粉塵數據：
-```bash
-python data_emulator.py
-```
-
-### 啟動監控程式
+### 啟動粉塵監控程式
 
 在另一個終端執行以下命令以啟動數據監控系統：
+
 ```bash
-python sqlite.py
+python dust_cv.py
 ```
 
 ### 啟動前端介面
 
 在另一個終端執行以下命令啟動 Web 介面：
+
 ```bash
 streamlit run app.py
+```
+
+### 啟動檔案監控程式(Dev)
+
+在另一個終端執行以下命令以啟動數據監控系統：
+
+```bash
+python sqlite.py
+```
+
+### 啟動數據模擬器(Dev)
+
+在終端執行以下命令以模擬粉塵數據：
+
+```bash
+python data_emulator.py
 ```
 
 前端介面將運行於 [http://localhost:8501](http://localhost:8501)。
@@ -78,7 +90,8 @@ streamlit run app.py
 
 ### config.yaml
 
-- `rtsp_url`: 用於後續擴展 RTSP 視訊串流的 URL（目前未啟用）。
+- `rtsp_url`: 用於後續擴展 RTSP 視訊串流的 URL。
+- `to_db`: 設定粉塵監控程式是否會寫入到生產環境資料庫中
 - `refresh_interval`: 頁面刷新間隔時間（秒）。
 - `thresholds.yellow_line`: 黃色警戒值，默認為 45。
 - `thresholds.red_line`: 紅色警戒值，默認為 60。
@@ -87,7 +100,7 @@ streamlit run app.py
 
 ## 系統需求
 
-- Python 3.8 或以上
+- Python 3.11 或以上
 - SQLite 資料庫
 
 ---
@@ -97,6 +110,7 @@ streamlit run app.py
 1. 模擬器每 10 秒生成一筆粉塵數據，請確認 `data/` 資料夾有讀寫權限。
 2. 請確保 `dust_data.db` 資料庫文件在程式目錄下，如無則系統會自動生成。
 3. 若需更改資料匯入行為，請調整 `sqlite.py` 中的相關邏輯。
+4. 生產環境中，請先啟動dust_cv.py再啟動app.py
 
 ---
 
